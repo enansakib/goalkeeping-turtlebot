@@ -22,7 +22,8 @@ def callback(dt):
             # increase the speed linearly with ball's location, i.e., if the
             # ball is moving far away from the robot speed is higher and if it's
             # moving closer to the robot increase the speed slowly
-            Speed = -((dt.data - 300) / 300) * 0.9 # 300 is the middle
+            Speed = -((dt.data - 300) / 300) * 0.9 # 300 is the middle, change the 0.9
+                                                   # to make it slower
             mv.linear.x = Speed
     else: # no ball detected (700 case: see tracking.py), stop the robot gradually
         if abs(Speed) > 0.05:
