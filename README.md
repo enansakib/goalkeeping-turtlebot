@@ -47,7 +47,7 @@ roslaunch goalkeeping-turtlebot turtlebotgk.launch
 ```
 
 ## Demo
-![demo.gif](demo/demo.gif)
+![demo.gif](demo/demo.gif) ![demo2.MOV](demo/demo2.MOV)
 
 
 ## Details
