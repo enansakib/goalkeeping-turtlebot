@@ -36,6 +36,6 @@ def callback(dt):
 rospy.init_node('move_robot')
 mv = Twist()
 pub = rospy.Publisher('/cmd_vel_mux/input/navi', Twist, queue_size=10)
-rospy.Subscriber('/coordinates', Float32, callback)
+rospy.Subscriber('/ball_location', Float32, callback)
 # Loops infinitely until someone stops the program execution
 rospy.spin()

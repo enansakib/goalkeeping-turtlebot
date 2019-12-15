@@ -91,7 +91,7 @@ def callback(img_msg):
 
 rospy.init_node('ball_tracking')
 bridge = CvBridge()
-pub = rospy.Publisher('coordinates', Float32, queue_size=10)
+pub = rospy.Publisher('ball_location', Float32, queue_size=10)
 rate = rospy.Rate(50)
 #tennis ball
 greenLower = (29, 86, 6)
