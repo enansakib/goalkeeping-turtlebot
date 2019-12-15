@@ -53,7 +53,12 @@ roslaunch goalkeeping-turtlebot turtlebotgk.launch
 ## Details
 The code inside the `src` folder already has necessary comments to understand what's going on. 
 
-![Fig.png](demo/Fig.png)
+The project consists of 2 ROS nodes: ball_tracking and move_robot. ball_tracking node reads Image type messages from the ZED camera topic and converts them to BGR8 format to perform image processing using OpenCV libraries. The conversion is done using [cv_bridge](http://wiki.ros.org/cv_bridge). We follow the same image processing techniques as this [amazing tutorial](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) to detect the ball with some additional consistency checks. Then we publish valid detections to a ROS topic.
+
+Then the move_robot node reads these messages and make decision whether to move the robot or not in order to stop the ball going inside the goal post. Concretely, if the ball is on the right side of the image then the robot goes forward and if the ball is on the left side of the image then it goes backward. If the ball is in the middle, the robot stops. We have used a linear speed function to avoid abrupt speed changing. 
+
+Fig. 1 and 2 show the overall workflow of this project and the project setup, respectively.
+![Fig1.png](demo/Fig1.png)
 
 ## Reference
 1. https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
