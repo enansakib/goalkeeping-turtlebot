@@ -3,7 +3,7 @@ import cv2
 import rospy
 from std_msgs.msg import Float32
 import imutils
-from sensoRmsgs.msg import Image
+from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 import math
 
@@ -24,11 +24,11 @@ def callback(img_msg):
         print "CvBridge Error: {}".format(e)
     # resizing the image, finding the mask for the ball, calculating valid contours
     frame = imutils.resize(cv_image, width=600)
-    hsv = cv2.cvtColor(frame, cv2.COLORBGR2HSV)
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(hsv, greenLower, greenUpper)
     mask = cv2.erode(mask, None, iterations=2)
     mask = cv2.dilate(mask, None, iterations=2)
-    cnts = cv2.findContours(mask.copy(), cv2.RETREXTERNAL,cv2.CHAIN_APPROXSIMPLE)[-2]
+    cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)[-2]
     center = None
     # If countours are found (at least one) then find the largest one and estimate
     # the minimum enclosing circle of the largest contour
